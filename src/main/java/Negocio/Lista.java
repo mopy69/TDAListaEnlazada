@@ -25,7 +25,7 @@ public class Lista {
         } else { //hay mas elementos
             Nodo Aux = L;
             Nodo Ant = null;
-            while ((Aux != null) && (Aux.getDato() <= ele)) {
+            while ((Aux != null)) {
                 Ant = Aux;
                 Aux = Aux.getEnlace();
             }
@@ -300,24 +300,47 @@ public class Lista {
 
     }
 
+    public boolean escapicua() {
+        boolean es = true;
+        if (cant > 1) {
+            Nodo ini = L;
+            Nodo fin = ini.getEnlace();
+
+            int i = cant / 2;
+
+            int ii = cant - 1;
+            while (i > 0) {
+                fin = L;
+                int n = ii;
+                while (fin.getEnlace() != null && n > 0) {
+                    fin = fin.getEnlace();
+                    n--;
+                }
+
+                ii--;
+                if (ini.getDato() != fin.getDato()) {
+                    es = false;
+                }
+                ini = ini.getEnlace();
+                i--;
+            }
+        }
+        return es;
+    }
+
     public static void main(String[] args) {
         Lista Ll = new Lista();
         Ll.insertar(2);
-        Ll.insertar(2);
-        Ll.insertar(2);
-        Ll.insertar(2);
         Ll.insertar(1);
-        Ll.insertar(5);
-        Ll.insertar(6);
-        Ll.insertar(6);
-        Ll.insertar(6);
-        Ll.insertar(6);
         Ll.insertar(3);
         Ll.insertar(4);
+        Ll.insertar(3);
+        Ll.insertar(1);
+        Ll.insertar(2);
+        Ll.insertar(3);
         System.out.println(Ll);
         //Ll.invertir();
-        Ll.eliminarTodosRepeYRepe();
-        System.out.println(Ll);
+        System.out.println(Ll.escapicua());
         //Ll.Eliminar(8);
         //Ll.Eliminar(1);
         //System.out.println(Ll);
